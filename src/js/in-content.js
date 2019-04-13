@@ -1,36 +1,84 @@
-/* in-content.js
-*
-* This file has an example on how to communicate with other parts of the extension through a long lived connection (port) and also through short lived connections (chrome.runtime.sendMessage).
-*
-* Note that in this scenario the port is open from the popup, but other extensions may open it from the background page or not even have either background.js or popup.js.
-* */
+// https://stackoverflow.com/questions/34338411/how-to-import-jquery-using-es6-syntax
+import $ from 'jquery';
 
-// Extension port to communicate with the popup, also helps detecting when it closes
-let port = null;
+class MintContext {
+    constructor() {
+        // this.token = $("#javascript-token").value
+    }
+}
 
-// Send messages to the open port (Popup)
-const sendPortMessage = data => port.postMessage(data);
+class MintIntegrator {
+    constructor() {
+        this.context = new MintContext();
+    }
 
-// Handle incoming popup messages
-const popupMessageHandler = message => console.log('in-content.js - message from popup:', message);
+    addTransaction() {
 
-// Start scripts after setting up the connection to popup
-chrome.extension.onConnect.addListener(popupPort => {
-    // Listen for popup messages
-    popupPort.onMessage.addListener(popupMessageHandler);
-    // Set listener for disconnection (aka. popup closed)
-    popupPort.onDisconnect.addListener(() => {
-        console.log('in-content.js - disconnected from popup');
-    });
-    // Make popup port accessible to other methods
-    port = popupPort;
-    // Perform any logic or set listeners
-    sendPortMessage('message from in-content.js');
-});
+    }
+}
 
-// Response handler for short lived messages
-const handleBackgroundResponse = response =>
-    console.log('in-content.js - Received response:', response);
+$(document).ready(() => {
+    // var integrator = new MintIntegrator();
+    // integrator.addTransaction()
 
-// Send a message to background.js
-chrome.runtime.sendMessage('Message from in-content.js!', handleBackgroundResponse);
+    // $("#controls-top").append('<a class="btn btn-hollow btn-sm" href="javascript://" id="controls-import" title="Import Transactions">Import Transactions</a>')
+    // debugger
+    // let target = $("#body-mint").get();
+    
+    // let observer = new MutationObserver((mutationsList, observer) => console.log(mutationsList));
+    // let config = { attributes: false, childList: false, subtree: true };
+
+    // observer.observe(target, config);
+
+    // Later, you can stop observing
+    // observer.disconnect();
+
+    // function boom() {
+
+    //     if ($("#product-view-root").size() > 0) {
+    //         console.log("retry!")
+    //       window.requestAnimationFrame(boom);
+    //     } else {
+    //         console.log("got it!")
+    //     //    $("#product-view-root").do_some_stuff();
+    //      }
+    //   }
+
+    //   boom()
+    // https://swizec.com/blog/how-to-properly-wait-for-dom-elements-to-show-up-in-modern-browsers/swizec/6663
+    // https://gist.github.com/chrisjhoughton/7890303
+    /**
+ * Wait for the specified element to appear in the DOM. When the element appears,
+ * provide it to the callback.
+ *
+ * @param selector a jQuery selector (eg, 'div.container img')
+ * @param callback function that takes selected element (null if timeout)
+ * @param maxtries number of times to try (return null after maxtries, false to disable, if 0 will still try once)
+ * @param interval ms wait between each try
+ */
+function waitForEl(selector, callback, maxtries = false, interval = 100) {
+    const poller = setInterval(() => {
+      const el = $(selector)
+      const retry = maxtries === false || maxtries-- > 0
+      if (retry && el.length < 1) return // will try again
+      clearInterval(poller)
+      callback(el || null)
+    }, interval)
+  }
+
+    // $.when($('#controls-top')).then((self) => {
+    //     debugger
+        // $("#controls-top").append('<a class="btn btn-hollow btn-sm" href="javascript://" id="controls-import" title="Import Transactions">Import Transactions</a>')
+    // });
+
+    waitForEl('#controls-top', (el) => {
+        let importButton = $.parseHTML('<a class="btn btn-hollow btn-sm" href="javascript://" id="controls-import" title="Import Transactions">Import Transactions</a>')
+        $("#controls-top").append(importButton)
+    })
+})
+
+
+// $(document).ajaxStop(() => console.log("done!"))
+
+// https://stackoverflow.com/questions/17986020/chrome-extension-javascript-to-detect-dynamically-loaded-content
+// $(document).bind("DOMSubtreeModified", () => console.log("test"))

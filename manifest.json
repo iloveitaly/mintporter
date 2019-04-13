@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "name": "chrome-extension-template",
+    "name": "Mintporter",
     "version": "0.0.1",
     "description": "Chrome extension boilerplate, replace all values!",
     "icons": {
