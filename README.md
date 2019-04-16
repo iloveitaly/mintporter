@@ -1,4 +1,4 @@
-# chrome-extension-template
+# Mintporter: Import Transactions Into Mint
 
 ## Introduction
 
@@ -7,19 +7,6 @@ This project aims to provide an easy to use boilerplate for chrome extensions, s
 Not all extensions will need of all scripts or all types of messaging. All code snippets are optional. Text and images should be replaced with your own.
 
 ## Installation
-
-Clone the repo:
-
-```
-git clone git@github.com:edrpls/chrome-extension-template.git name-of-your-project
-```
-
-Set git to track your own repository instead of this one:
-
-```
-git remote set-url --delete origin git@github.com:edrpls/chrome-extension-template.git # Remove old origin
-git remote set-url --add origin [YOUR REPO URL] # Add new origin
-```
 
 Install dependencies:
 
@@ -63,12 +50,11 @@ The extension should be now at the top of the page:
 
 ## Publishing
 
-[Follow the official docs](https://developer.chrome.com/webstore/publish) to learn how to publish a Chrome extension.
-Please note that Google has its own process to review public extensions and using this boilerplate **does not guarantee** that the extension will pass it. Passing the review process is your responsibility!
+This extension is not published on the Chrome app store. 
 
 ## External resources
 
-*   [Sample extension built with this template](https://github.com/edrpls/social-network-alert)
+*   [Original Extension Template](https://github.com/edrpls/chrome-extension-template)
 
 *   [Chrome Developer Documentation](https://developer.chrome.com/extensions/devguide)
 

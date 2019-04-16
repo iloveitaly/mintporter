@@ -29,7 +29,7 @@ module.exports = {
 
     plugins: [
         new CopyWebpackPlugin([
-            { from: './manifest.json' },
+            { from: './manifest.json' },    
             { from: './src/images' },
             { from: './src/views' }
         ])
