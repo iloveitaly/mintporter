@@ -16,6 +16,15 @@ yarn install # or npm install
 
 ## Usage
 
+Once you load this extension into Chrome you'll see a "Import Transactions" button that allows you to import a list of transactions. Some details:
+
+* The CSV you import has to have Date, Description, and Amount columns
+* You can't post transactions to a specific account
+* There's no way to differentiate between the raw credit card description and the description selection
+* You'll want to tag the imported transactions with "Imported". This makes them searchable. 
+
+## Development
+
 To run a development server that will watch for file changes and rebuild the scripts, run:
 
 ```
