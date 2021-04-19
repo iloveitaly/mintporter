@@ -1,17 +1,19 @@
-# Mintporter: Import Transactions Into Mint
+# Mintporter: Import Transactions in a CSV Into Mint
 
 ## Introduction
 
-This project aims to provide an easy to use boilerplate for chrome extensions, showcasing communication between its different scripts.
+I wanted to import a CSV of transactions into Mint. To learn chrome extension development, I built this little tool.
 
-Not all extensions will need of all scripts or all types of messaging. All code snippets are optional. Text and images should be replaced with your own.
+Original template pulled from:
+
+https://github.com/edrpls/chrome-extension-template
 
 ## Installation
 
 Install dependencies:
 
 ```
-yarn install # or npm install
+npm install
 ```
 
 ## Usage
@@ -21,7 +23,7 @@ Once you load this extension into Chrome you'll see a "Import Transactions" butt
 * The CSV you import has to have Date, Description, and Amount columns
 * You can't post transactions to a specific account
 * There's no way to differentiate between the raw credit card description and the description selection
-* You'll want to tag the imported transactions with "Imported". This makes them searchable. 
+* You'll want to tag the imported transactions with "Imported". This makes them searchable.
 
 ## Development
 
@@ -57,9 +59,11 @@ The extension should be now at the top of the page:
 
 ![Extension Loaded](assets/ext_loaded.png)
 
+Once the extension is loaded in you can just press the refresh button to load the latest version.
+
 ## Publishing
 
-This extension is not published on the Chrome app store. 
+This extension is not published on the Chrome app store.
 
 ## External resources
 
