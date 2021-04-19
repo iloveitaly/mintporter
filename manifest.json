@@ -1,16 +1,12 @@
 {
     "manifest_version": 2,
     "name": "Mintporter",
-    "version": "0.0.1",
-    "description": "Chrome extension boilerplate, replace all values!",
+    "version": "1.0.0",
+    "description": "Import a CSV of transactions into Mint.com",
     "icons": {
         "16": "16x16.png",
         "48": "48x48.png",
         "128": "128x128.png"
-    },
-    "browser_action": {
-        "default_title": "Boilerplate popup!",
-        "default_popup": "popup.html"
     },
     "content_scripts": [
         {
@@ -18,10 +14,6 @@
             "js": ["in-content.js"]
         }
     ],
-    "background": {
-        "scripts": ["background.js"],
-        "persistent": false
-    },
     "content_security_policy":
         "script-src 'self' 'unsafe-eval'; object-src 'self'; img-src * data: 'self' 'unsafe-eval'",
     "offline_enabled": true,

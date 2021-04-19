@@ -25,7 +25,7 @@ class MintIntegrator {
     }
 
    importFile(csvData) {
-        let parsedCsv = Papa.parse(csvData, { header: true })
+       let parsedCsv = Papa.parse(csvData, { header: true, skipEmptyLines: true })
 
         // make sure there are date, description, amount, and category headers
         const requiredFields = ["Date", "Description", "Amount"];
@@ -50,16 +50,25 @@ class MintIntegrator {
     }
 
     addTransaction(date, merchant, amount, categoryDescription = null) {
+        let isExpense = true;
+
+        if(amount.includes('-')) {
+            isExpense = false;
+        }
+
+        // https://stackoverflow.com/questions/559112/how-to-convert-a-currency-string-to-a-double-with-jquery-or-javascript
+        amount = amount.replace(/[^0-9.-]+/g, "")
+
         let transactionData = {
             "cashTxnType": "on",
             "mtCashSplit": "on",
             // mtCheckNo=&
             "task":"txnadd",
             "txnId":":0",
-            "mtType":"cash",
+            "mtType": "cash",
             // symbol=&
             "isInvestment":"false",
-            
+
             // if catId is not specified, defaults to "UNCATEGORIZED"
             // "catId":"7",
             // category=Food%20%26%20Dining&
@@ -71,7 +80,7 @@ class MintIntegrator {
             "amount": amount,
             "note": "Mintporter Transaction\n\n" + merchant,
 
-            "mtIsExpense":"true",
+            "mtIsExpense": isExpense,
 
             // flips the ATM option thing that mint has in the UI
             "mtCashSplitPref":"2",
@@ -149,7 +158,7 @@ $(document).ready(() => {
     }
 
     const integrator = new MintIntegrator();
-    // integrator.addTransaction("04/12/2019", "ROBOT", "1")      
+    // integrator.addTransaction("04/12/2019", "ROBOT", "1")
 
     // it takes a bit for mint to complete async calls and build the page content
     // wait until the "Add Transaction" button appears to setup the import button
